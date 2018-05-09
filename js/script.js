@@ -17,14 +17,6 @@ var spinner = null;
 var numspinner = 100;
 var spinners = [];
 
-// var objectLoader = new THREE.ObjectLoader();
-// objectLoader.load("assets/FidgetSpinner.json", function ( obj ) {
-// spinner = obj;
-// spinner.rotation.x += 0.5;
-// spinner.castShadow = true;
-// spinner.receiveShadow = false;
-// scene.add( obj );
-// } );
 
 var objectLoader = new THREE.ObjectLoader();
 objectLoader.load("assets/FidgetSpinner.json", function ( obj ) {
@@ -41,8 +33,6 @@ for ( var i = 0; i < numspinner; i ++ ) {
 	mesh.updateMatrix();
 	spinners[i] = mesh;
 	scene.add( mesh );
-	//spinners.push[mesh];
-	
 }
 
 scene.add( obj );

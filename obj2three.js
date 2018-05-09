@@ -8,8 +8,6 @@ if ( process.argv.length <= 2 ) {
 
 }
 
-//
-
 var PRECISION = 6;
 
 function parseNumber( key, value ) {
