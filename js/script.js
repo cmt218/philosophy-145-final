@@ -1,16 +1,13 @@
 var scene = new THREE.Scene(); 
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); 
 var renderer = new THREE.WebGLRenderer(); 
-renderer.setSize( window.innerWidth/1.15, window.innerHeight/1.15 ); 
+renderer.setSize( window.innerWidth, window.innerHeight ); 
 renderer.setClearColor (0xffffff, 1);
-var container = document.getElementById('container');
-container.appendChild(renderer.domElement);
+document.body.appendChild(renderer.domElement);
 var info = document.getElementById('info');
 
 var controls = new THREE.OrbitControls( camera );
 var objectLoader = new THREE.ObjectLoader();
-
-
 
 var brain = null;
 
@@ -43,7 +40,6 @@ function welcome() {
 
 	// Setup BG color and light
 	renderer.setClearColor (color, 1);
-	container.style.backgroundColor = htmlcolor;
 	var light = new THREE.PointLight( 0xce4886, 1, 100 );
 	light.position.set( 0, 0, 1 );
 	scene.add( light );
