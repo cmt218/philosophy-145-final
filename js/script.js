@@ -2,13 +2,19 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); 
 var renderer = new THREE.WebGLRenderer(); 
 renderer.setSize( window.innerWidth, window.innerHeight ); 
-renderer.setClearColor (0xffffff, 1);
+renderer.setClearColor (0xa8a3a5, 1);
 document.body.appendChild(renderer.domElement);
-var info = document.getElementById('info');
+
+// Reference navigation panes and hide them initially
+var welcomenav = document.getElementById('welcome');
+var pluginnav = document.getElementById('plugin');
+var notpluginnav = document.getElementById('notplugin');
+hideNavs();
 
 var controls = new THREE.OrbitControls( camera );
 var objectLoader = new THREE.ObjectLoader();
 
+var light = null;
 var brain = null;
 
 welcome();
@@ -33,22 +39,47 @@ function animate() {
 
 // Displays spinning brain intro
 function welcome() {
+
+	// Setup light
+	if(!light){
+		light = new THREE.PointLight( 0xce4886, 1, 100 );
+		light.position.set( 0, 0, 1 );
+		scene.add( light );
+	}
 	
-	// Colors
-	var color = 0xa8a3a5;
-	var htmlcolor = "#a8a3a5";
-
-	// Setup BG color and light
-	renderer.setClearColor (color, 1);
-	var light = new THREE.PointLight( 0xce4886, 1, 100 );
-	light.position.set( 0, 0, 1 );
-	scene.add( light );
-
+	// Show welcome nav
+	hideNavs();
+	welcomenav.style.display = "block";
+	
 	// Load in brain model
-	objectLoader.load("assets/brain.json", function ( obj ) {
-		brain = obj;
-		brain.scale.set(3,3,3);
-		brain.position.y = -0.25;
-		scene.add(brain);
-	});
+	if(!brain){
+		objectLoader.load("assets/brain.json", function ( obj ) {
+			brain = obj;
+			brain.scale.set(3,3,3);
+			brain.position.y = -0.25;
+			scene.add(brain);
+		});
+	}
 }
+
+function enterMachine() {
+
+	// Show enter machine nav
+	hideNavs();
+	pluginnav.style.display = "block";
+
+}
+
+function dontEnter() {
+
+	// Show not enter machine nav
+	hideNavs();
+	notpluginnav.style.display = "block";
+}
+
+function hideNavs() {
+	welcomenav.style.display = "none";
+	pluginnav.style.display = "none";
+	notpluginnav.style.display = "none";
+}
+

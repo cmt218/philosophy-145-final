@@ -11,19 +11,58 @@
 				width: 100%; 
 				height: 100%; 
 			}
-			#info {
+			.control {
 				position: absolute;
-				top: 10px;
 				width: 100%;
+				height: 20%;
 				text-align: center;
 				z-index: 100;
-				display:block;
+				background-color: black;
+				color: #00ff00;
+			}
+			.b1 {
+				width: 25%; 
+				height: 30%; 
+				position: absolute; 
+				left: 0;
+				top: 10px;
+			}
+			.b2 {
+				width: 25%; 
+				height: 30%; 
+				position: absolute; 
+				right: 0;
+				top: 10px;
+			}
+			h3 {
+				width: 50%;
+				margin: auto;
 			}
 		</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
 	</head>
 	<body>
-		<div id="info">Welcome to the Experience Machine</div>
+		<div id="welcome" class = "control">
+			<h3>Welcome to the Experience Machine!</h3>
+			<p>(Tip: use scrollwheel to zoom and drag mouse to rotate!)</p>
+		</br>
+			<p>An experience machine is a hypothetical machine which would interface with a human brain and stimulate it such that the user has every sensation that would suggest they are experiencing a reality, but their physical body remains still in the machine and the user is none the wiser.</p>
+			<button class="b1" type="button" onclick="enterMachine()">I'd Plug In!</button>
+			<button class="b2" type="button" onclick="dontEnter()">No Way!</button>
+		</div>
+
+		<div id="plugin" class = "control">
+			<h3>You Chose to Plug In</h3>
+			<button class="b1" type="button" onclick="tbd()">Lets Keep Going</button>
+			<button class="b2" type="button" onclick="welcome()">Take Me Back!</button>
+		</div>
+
+		<div id="notplugin" class = "control">
+			<h3>You Chose Not to Plug In</h3>
+			<button class="b1" type="button" onclick="welcome()">Take Me Back!</button>
+			<button class="b2" type="button" onclick="tbd()">Lets Keep Going</button>
+		</div>
+
 		<script src="js/three.js"></script>
 		<script src="js/OrbitControls.js"></script>
 		<script src="js/script.js"></script>
