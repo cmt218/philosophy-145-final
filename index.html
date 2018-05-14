@@ -14,57 +14,148 @@
 			.control {
 				position: absolute;
 				width: 100%;
-				height: 20%;
+				height: 25%;
 				text-align: center;
 				z-index: 100;
 				background-color: black;
 				color: #00ff00;
+				overflow: auto;
 			}
 			.b1 {
 				width: 20%; 
 				height: 30%; 
 				position: absolute; 
 				left: 1%;
-				top: 10%;
+				top: 40%;
 			}
 			.b2 {
 				width: 20%; 
 				height: 30%; 
 				position: absolute; 
 				right: 1%;
-				top: 10%;
+				top: 40%;
 			}
 			h3 {
 				width: 50%;
 				margin: auto;
 			}
 			p {
-				margin-left: 1%;
-				margin-right: 1%;
+				margin: auto;
+				width: 55%;
+			}
+			#preloader {
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background:rgb(0, 0, 0);
+				opacity:0.6;
+				z-index:100;
+				display: none;
+			}
+			#spinner_container {
+				position:absolute;
+				width:100%;
+				top: 50%;
+				left:0px;
+				height:1px;
+				overflow:visible;
+				opacity: 1;
+				background: transparent;
+			}
+			#spinner {
+				width: 50px;
+				height:50px;
+				margin-left:-15px;
+				position:absolute;
+				top:-15px;
+				left:50%;
+				display:block;
+			}
+			#spinner_text {
+				position:absolute;
+				width:100%;
+				bottom: 40%;
+				left:0px;
+				height:1px;
+				overflow:visible;
+				opacity: 1;
+				background: transparent;
+				text-align: center;
+				color: white;
+			}
+			#spinner_texture {
+				position:absolute;
+				width:100%;
+				bottom: 35%;
+				left:0px;
+				height:1px;
+				overflow:visible;
+				opacity: 1;
+				background: transparent;
+				text-align: center;
+				color: white;
+			}
+			#spinner_patience {
+				position:absolute;
+				width:100%;
+				bottom: 30%;
+				left:0px;
+				height:1px;
+				overflow:visible;
+				opacity: 1;
+				background: transparent;
+				text-align: center;
+				color: white;
 			}
 		</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
 	</head>
 	<body>
+
+		<div id="preloader">
+			<div id="spinner_text">
+			</div>
+			<div id="spinner_texture">
+			</div>
+			<div id="spinner_patience">
+				This may take a minute..sorry :)
+			</div>
+			<div id="spinner_container">
+				<img id="spinner" src="img/spinner.gif" alt="" />
+			</div>
+		</div>
+
 		<div id="welcome" class = "control">
-			<h3>Would You Plug in to the Experience Machine?</h3>
-			<p>(Tip: use scrollwheel to zoom and drag mouse to rotate!)</p>
+			<h3>Welcome to The Experience Machine</h3>
+			<p>(Tip: use scrollwheel to zoom, drag mouse to rotate, and arrow keys to pan!)</p>
 		</br>
-			<p>An experience machine is a hypothetical device which would interface with a human brain and stimulate it such that the user has every sensation that would suggest they are experiencing a reality, but their physical body remains still in the machine and the user is none the wiser.</p>
-			<button class="b1" type="button" onclick="enterMachine()">I'd Plug In!</button>
-			<button class="b2" type="button" onclick="dontEnter()">No Way!</button>
+			<p>An experience machine is a hypothetical device which would interface with a human brain and stimulate it such that the user has every sensation to suggest that they are experiencing reality, but their physical body remains still in the machine and the user is none the wiser. You could for example relive the glory of great historic figures, achieve many goals which would ordinarily require a lifetime of devotion, or pursue experiences which are too dangerous for real life and always come out alive!</p>
+		</br>
+			<h3>Sure, most would plug in temporarily to give it a try, but would you plug in for life?</h3>
+			<button class="b1" type="button" onclick="enterMachine()">I think so!</button>
+			<button class="b2" type="button" onclick="dontEnter()">I don't think so!</button>
 		</div>
 
 		<div id="plugin" class = "control">
-			<h3>You Chose to Plug In</h3>
-			<button class="b1" type="button" onclick="tbd()">Lets Keep Going</button>
-			<button class="b2" type="button" onclick="welcome()">Take Me Back!</button>
+			<h3>So you want to plug in...</h3>
+		</br>
+			<p>Here is some food for thought: Is it moral to plug into the machine for life leaving behind your friends and family? Will your choice make them feel as though they too should plug in? Do you welcome the thought of being made happy by means of self-illusion? Sure, you will have no memory of leaving your friends and family behind and you won’t know that your new reality is an illusion once in the machine, but can you justify making this choice from your current standpoint?</p>
+		</br>
+			<h3>Are you sure that you would plug in?</h3>
+			<button class="b1" type="button" onclick="tbd()">Yes, I'm sure!</button>
+			<button class="b2" type="button" onclick="welcome()">No, take me back!</button>
 		</div>
 
 		<div id="notplugin" class = "control">
-			<h3>You Chose Not to Plug In</h3>
-			<button class="b1" type="button" onclick="welcome()">Take Me Back!</button>
-			<button class="b2" type="button" onclick="tbd()">Lets Keep Going</button>
+			<h3>So you don't want to plug in...</h3>
+		</br>
+			<p>Here is some food for thought: If you were somehow made aware that you are in an experience machine right now, would you unplug from it? Do you actually value connection to reality enough to unplug from something you have known for so long or do you only value what you perceive as real? We have a status quo bias that makes us reluctant to change which makes most peoples’ answer to these questions a resounding "no".</p>
+		</br>
+			<h3>Are you sure that you wouldn't plug in?</h3>
+			<button class="b1" type="button" onclick="welcome()">No, take me back!</button>
+			<button class="b2" type="button" onclick="tbd()">Yes, I'm sure!</button>
 		</div>
 
 		<script src="js/three.js"></script>
