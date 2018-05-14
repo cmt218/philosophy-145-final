@@ -16,18 +16,24 @@ var objectLoader = new THREE.ObjectLoader();
 
 var light = null;
 var brain = null;
+var question = null;
+
+var rotationSpeed = 0;
 
 welcome();
 animate();
 
-camera.position.z = 1;
+camera.position.z = 1.5;
 
 // Animation function
 function animate() { 
 	requestAnimationFrame( animate ); 
 
 	if(brain) {
-		brain.rotation.y += 0.02;
+		brain.rotation.y += rotationSpeed;
+	}
+	if(question){
+		question.rotation.y += rotationSpeed;
 	}
 	
 	controls.update();
@@ -41,25 +47,43 @@ function animate() {
 function welcome() {
 
 	// Setup light
-	if(!light){
-		light = new THREE.PointLight( 0xce4886, 1, 100 );
-		light.position.set( 0, 0, 1 );
-		scene.add( light );
+	if(light){
+		scene.remove(light);
+		light = null;
 	}
+	light = new THREE.PointLight( 0xffffff, 1, 100 );
+	light.position.set( 0, 0, 1 );
+	scene.add( light );
 	
 	// Show welcome nav
 	hideNavs();
 	welcomenav.style.display = "block";
+
+	// Clear objects from previous scene
+	hideObjs();
 	
 	// Load in brain model
 	if(!brain){
 		objectLoader.load("assets/brain.json", function ( obj ) {
 			brain = obj;
-			brain.scale.set(3,3,3);
-			brain.position.y = -0.25;
+			brain.scale.set(5,5,5);
+			brain.position.y = -0.75;
 			scene.add(brain);
 		});
 	}
+
+	// Load in question mark model
+	if(!question) {
+		objectLoader.load("assets/questionmark.json", function ( obj ) {
+			question = obj;
+			question.scale.set(0.3, 0.3, 0.3);
+			question.position.y = 0.1;
+			scene.add(question);
+		});
+	}
+
+	// Set rotation speed
+	rotationSpeed = 0.015;
 }
 
 function enterMachine() {
@@ -72,14 +96,48 @@ function enterMachine() {
 
 function dontEnter() {
 
+	// Setup light
+	if(light){
+		scene.remove(light);
+		light = null;
+	}
+	light = new THREE.PointLight( 0xffffff, 1, 100 );
+	light.position.set( 0, 0, 1 );
+	scene.add( light );
+
 	// Show not enter machine nav
 	hideNavs();
 	notpluginnav.style.display = "block";
+
+	// Clear objects from previous scene
+	hideObjs();
+	
+	// Load in brain model
+	if(!brain){
+		objectLoader.load("assets/braintextured.json", function ( obj ) {
+			//brain = obj;
+			brain = obj;
+			brain.scale.set(5,5,5);
+			brain.position.y = -0.75;
+			scene.add(brain);
+		});
+	}
+
+	// Set rotation speed
+	rotationSpeed = 0.015;
 }
 
 function hideNavs() {
 	welcomenav.style.display = "none";
 	pluginnav.style.display = "none";
 	notpluginnav.style.display = "none";
+}
+
+function hideObjs() {
+	scene.remove(brain);
+	scene.remove(question);
+
+	brain = null;
+	question = null;
 }
 
