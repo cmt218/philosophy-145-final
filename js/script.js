@@ -96,6 +96,8 @@ function enterMachine() {
 
 function dontEnter() {
 
+	
+
 	// Setup light
 	if(light){
 		scene.remove(light);
@@ -114,11 +116,18 @@ function dontEnter() {
 	
 	// Load in brain model
 	if(!brain){
-		objectLoader.load("assets/braintextured.json", function ( obj ) {
-			//brain = obj;
+		// Load a texture and obj
+		var texture = new THREE.TextureLoader().load( "assets/braintexture.jpg" );
+		objectLoader.load("assets/brain.json", function ( obj ) {
 			brain = obj;
 			brain.scale.set(5,5,5);
 			brain.position.y = -0.75;
+			// Set texture for appropriate child of brain
+			brain.traverse( function ( child ) {
+				if ( child instanceof THREE.Mesh ) {
+					child.material.map = texture;
+				}
+			});
 			scene.add(brain);
 		});
 	}
